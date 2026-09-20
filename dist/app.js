@@ -1,23 +1,39 @@
 const menu = document.querySelector('.menu');
 const navigation = document.querySelector('#navigation');
+const productMenu = document.querySelector('.products-nav');
 menu?.addEventListener('click', () => {
  const open = menu.getAttribute('aria-expanded') !== 'true';
  menu.setAttribute('aria-expanded', String(open));
  navigation.classList.toggle('open', open);
  menu.textContent = open ? 'Fechar' : 'Menu';
+ if (!open && productMenu) productMenu.open = false;
 });
 document.addEventListener('keydown', event => {
+ if (event.key === 'Escape' && productMenu?.open) {
+  productMenu.open = false;
+  productMenu.querySelector('summary').focus();
+  return;
+ }
  if(event.key === 'Escape' && menu?.getAttribute('aria-expanded') === 'true') {
  menu.click(); menu.focus();
  }
 });
+document.addEventListener('click', event => {
+ if (productMenu?.open && !productMenu.contains(event.target)) productMenu.open = false;
+});
+productMenu?.addEventListener('focusout', event => {
+ if (event.relatedTarget && !productMenu.contains(event.relatedTarget)) productMenu.open = false;
+});
+productMenu?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+ productMenu.open = false;
+ if (menu?.getAttribute('aria-expanded') === 'true') menu.click();
+}));
 
 // Progressive enhancement: all content stays readable without JavaScript.
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 const compactScreen = matchMedia('(max-width: 760px)');
 const story = document.querySelector('.card-story');
 const cards = [...document.querySelectorAll('.motion-card')];
-const humanHero = document.querySelector('.human-hero');
 let scheduled = false;
 const clamp = value => Math.max(0, Math.min(1, value));
 function paintScroll() {
@@ -25,30 +41,26 @@ function paintScroll() {
  document.body.classList.toggle('scrolled', scrollY > 20);
  if (reducedMotion.matches) {
   cards.forEach(card => card.style.removeProperty('transform'));
-  humanHero?.style.removeProperty('--photo-shift');
-  humanHero?.style.removeProperty('--badge-shift');
+  cards.forEach(card => { card.style.removeProperty('opacity'); card.style.removeProperty('z-index'); });
   return;
- }
- if (humanHero) {
-  const box = humanHero.getBoundingClientRect();
-  if (box.bottom > 0) {
-   const progress = clamp(-box.top / box.height);
-   humanHero.style.setProperty('--photo-shift', `${-3 + progress * 5}%`);
-   humanHero.style.setProperty('--badge-shift', `${progress * -30}px`);
-  }
  }
  if (!story) return;
  const box = story.getBoundingClientRect();
  if (box.bottom < -100 || box.top > innerHeight + 100) return;
  const mobile = compactScreen.matches;
- const progress = mobile ? clamp((innerHeight - box.top) / (innerHeight + box.height)) : clamp((104 - box.top) / Math.max(1, box.height - innerHeight + 104));
- const spread = mobile ? 65 + progress * 20 : 20 + progress * Math.min(150, innerWidth * .12);
- const angle = mobile ? 12 : 4 + progress * 16;
+ if (mobile) {
+  cards.forEach(card => { card.style.removeProperty('transform'); card.style.removeProperty('opacity'); card.style.removeProperty('z-index'); });
+  return;
+ }
+ const progress = clamp((104 - box.top) / Math.max(1, box.height - innerHeight + 104));
+ const position = progress * (cards.length - 1);
  story.style.setProperty('--story-progress', progress);
  cards.forEach((card, index) => {
-  const direction = index - 1;
-  const lift = index === 1 ? -35 - progress * 25 : progress * 12;
-  card.style.transform = `translate(calc(-50% + ${direction * spread}px), calc(-50% + ${lift}px)) rotate(${direction * angle}deg)`;
+  const distance = index - position;
+  const offset = Math.max(-1.5, Math.min(1.5, distance));
+  card.style.transform = `translate(-50%, -50%) translate3d(${offset * 245}px, ${Math.abs(offset) * 24}px, ${-Math.abs(offset) * 240}px) rotateY(${-offset * 42}deg) rotateZ(${offset * 7}deg) scale(${1 - Math.min(1, Math.abs(offset)) * .14})`;
+  card.style.opacity = String(Math.max(.12, 1 - Math.abs(distance) * .65));
+  card.style.zIndex = String(10 - Math.round(Math.abs(distance) * 3));
  });
 }
 function requestPaint() {
