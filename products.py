@@ -24,7 +24,7 @@ PRODUCTS = [
          short='Benefícios e vantagens para o seu dia a dia.',
          title='Benefícios que acompanham você todos os dias.',
          description='Ser Plano Mais também significa ter acesso a oportunidades e vantagens no dia a dia. No Clube Mais, você encontra benefícios e condições especiais em uma rede de parceiros em constante expansão.',
-         alt='Pessoas aproveitando um momento de lazer e compras',
+         alt='Mãe e filha aproveitando uma visita a uma cafeteria de bairro',
          benefits=['Descontos em estabelecimentos parceiros', 'Ofertas exclusivas', 'Benefícios para lazer e serviços', 'Vantagens para toda a família', 'Rede de parceiros em expansão']),
 ]
 
@@ -65,7 +65,7 @@ def product_page(p, button):
         <img class="product-hero-logo" src="/assets/products/{p['slug']}-logo.png" width="180" height="60" alt="{p['name']}">
         <div class="eyebrow">{p['name']} · PLANO MAIS</div><h1 id="product-title">{p['title']}</h1><p>{p['description']}</p>
         {button('Fale com a equipe', 'tel:08000955651', 'product-button')}<a class="product-secondary" href="#beneficios-produto">Explore os benefícios <span aria-hidden="true">↓</span></a>
-        </div><div class="product-hero-visual"><img class="product-photo" src="/assets/products/{p['slug']}-photo.png" alt="{p['alt']}" width="544" height="680" fetchpriority="high"><span class="product-photo-stamp"><img src="/assets/products/{p['slug']}-icon.svg" width="32" height="32" alt=""></span></div></section>
+        </div><div class="product-hero-visual"><img class="product-photo" src="/assets/products/{'memorialmais-editorial.webp' if p['slug'] == 'memorialmais' else (p['slug'] + '-photo.webp' if p['slug'] in {'petmais','supramed'} else p['slug'] + '-photo.png')}" alt="{p['alt']}" width="1122" height="1402" fetchpriority="high"><span class="product-photo-stamp"><img src="/assets/products/{p['slug']}-icon.svg" width="32" height="32" alt=""></span></div></section>
       <section class="section wrap product-benefits" id="beneficios-produto" aria-labelledby="product-benefits-title"><div><div class="eyebrow">BENEFÍCIOS {p['name'].upper()}</div><h2 id="product-benefits-title">{p['short']}</h2><p class="muted">Conheça as possibilidades e converse com a equipe sobre o atendimento na sua região.</p></div><ul>{benefits}</ul></section>
       <section class="wrap product-contact"><div><div class="eyebrow">VAMOS CONVERSAR</div><h2>Saiba mais sobre {p['name']}.</h2><p>A equipe Mais ajuda você a conhecer os serviços, a rede disponível e as condições de utilização.</p></div><div><a class="product-phone" href="tel:08000955651">0800 095 5651 <span aria-hidden="true">↗</span></a><p>Segunda a sexta, das 8h às 20h.</p></div></section>
       </div>''' + product_overview(exclude=p['slug'])
