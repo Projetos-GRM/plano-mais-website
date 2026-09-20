@@ -55,3 +55,22 @@
  .company-vibrant aside{padding:12px}
 }
 @media(prefers-reduced-motion:reduce){.motion-card,.motion-plus,.motion-prime,.motion-platinum{opacity:1;transform-style:flat}.motion-plus{transform:translate(calc(-50% - 130px),-52%) rotate(-16deg)}.motion-prime{transform:translate(-50%,-60%)}.motion-platinum{transform:translate(calc(-50% + 130px),-52%) rotate(16deg)}}
+
+/* Company cards fall into place once as the panel enters view. */
+.company-vibrant aside.company-stack-armed { overflow: hidden; }
+.company-vibrant aside.company-stack-armed > div { opacity: 0; }
+.company-vibrant aside.company-stack-play > div {
+  animation: company-stack-drop .85s cubic-bezier(.165,.84,.44,1) both;
+}
+.company-vibrant aside.company-stack-play > div:nth-child(2) { animation-delay: .18s; }
+.company-vibrant aside.company-stack-play > div:nth-child(3) { animation-delay: .36s; }
+@keyframes company-stack-drop {
+  0% { opacity: 0; transform: translate3d(-16px,-110px,0) rotate(-6deg) scale(.94); }
+  50% { opacity: 1; }
+  78% { transform: translate3d(0,9px,0) rotate(1deg) scale(1.015); }
+  100% { opacity: 1; transform: translate3d(0,0,0) rotate(0) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .company-vibrant aside.company-stack-armed > div { opacity: 1; }
+  .company-vibrant aside.company-stack-play > div { animation: none; }
+}

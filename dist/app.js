@@ -92,3 +92,22 @@ if (!reducedMotion.matches && 'IntersectionObserver' in window) {
   }
  });
 }
+
+// Drop the company cards once when their panel becomes visible.
+const companyStack = document.querySelector('.company-vibrant aside');
+if (companyStack && !reducedMotion.matches && 'IntersectionObserver' in window) {
+ companyStack.classList.add('company-stack-armed');
+ const stackObserver = new IntersectionObserver((entries, observer) => {
+  if (entries.some(entry => entry.isIntersecting)) {
+   companyStack.classList.add('company-stack-play');
+   observer.disconnect();
+  }
+ }, {threshold: .35, rootMargin: '-15% 0px -15% 0px'});
+ stackObserver.observe(companyStack);
+ reducedMotion.addEventListener('change', () => {
+  if (reducedMotion.matches) {
+   companyStack.classList.remove('company-stack-armed', 'company-stack-play');
+   stackObserver.disconnect();
+  }
+ });
+}

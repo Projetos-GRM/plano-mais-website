@@ -2,7 +2,9 @@
 
 ## Produtos — referência Figma
 
-Logotipos, ícones e fotos em `dist/assets/products/` foram exportados do arquivo Figma `hl7jWFzcjeipXLQbBLHxUb`, seção `58193:11862` e seções individuais `58193:12031`, `58193:12105`, `58193:12178`, `58193:12255`. As URLs de origem estão em `figma-assets.json`; os arquivos locais são utilizados pelo site.
+Logotipos e ícones em `dist/assets/products/` foram exportados do arquivo Figma `hl7jWFzcjeipXLQbBLHxUb`, seção `58193:11862` e seções individuais `58193:12031`, `58193:12105`, `58193:12178`, `58193:12255`. As URLs de origem estão em `figma-assets.json`.
+
+As páginas de Petmais, Supramed e Clubemais usam, respectivamente, `petmais-photo.webp`, `supramed-photo.webp` e `clubemais-photo.webp`. A página de Memorialmais usa `memorialmais-editorial.webp`. As imagens são ilustrativas e não representam clientes, profissionais, parceiros ou locais reais. As antigas fotos PNG foram retiradas da versão publicada.
 
 Identificação da seção de produtos: Petmais `#f5892a`, Supramed `#2abdb5`, Memorialmais `#7b4fbe`, Clubemais `#e8507a`. Tons mais escuros são usados no texto para garantir contraste. Os textos e benefícios das páginas individuais seguem as seções correspondentes do Figma.
 

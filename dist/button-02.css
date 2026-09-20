@@ -1,0 +1,80 @@
+/* Arrow reveal for the three primary calls to action. */
+.button.button-02 {
+  --button-02-bg: var(--blue);
+  --button-02-fg: #fff;
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  justify-content: flex-start;
+  width: max-content;
+  height: 48px;
+  padding: 0;
+  gap: 0;
+  background: transparent;
+  color: var(--button-02-fg);
+  isolation: isolate;
+}
+.button.button-02.light { --button-02-bg: #fff; --button-02-fg: var(--blue); }
+.button.button-02.pink { --button-02-bg: var(--pink); --button-02-fg: #fff; }
+.button.button-02:hover { background: transparent; transform: none; }
+.button-02 .inner,
+.button-02 .circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  border-radius: 999px;
+  background: var(--button-02-bg);
+  color: var(--button-02-fg);
+  white-space: nowrap;
+  transition: width .5s cubic-bezier(.165,.84,.44,1),
+              scale .5s cubic-bezier(.165,.84,.44,1),
+              background-color .5s cubic-bezier(.165,.84,.44,1);
+}
+.button-02 .inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding-inline: 32px;
+}
+.button-02 .circle {
+  position: absolute;
+  right: 0;
+  width: 48px;
+  scale: 0;
+  transform-origin: left center;
+  overflow: hidden;
+}
+.button-02 .circle span {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 22px;
+  transform: translateX(-100%);
+  transition: transform .3s cubic-bezier(.165,.84,.44,1) .1s;
+}
+.button-02:hover .inner,
+.button-02:focus-visible .inner { width: calc(100% - 52px); }
+.button-02:hover .circle,
+.button-02:focus-visible .circle { scale: 1; }
+.button-02:hover .circle span,
+.button-02:focus-visible .circle span { transform: translateX(0); }
+@media (prefers-reduced-motion: reduce) {
+  .button-02 .inner, .button-02 .circle, .button-02 .circle span { transition: none; }
+}
+.company-vibrant .button.button-02.pink:hover { background: transparent; }
+
+/* Reserve arrow space without letting the label cover the circle. */
+.button.button-02::before {
+  content: attr(data-label);
+  visibility: hidden;
+  white-space: nowrap;
+  padding-inline: 32px;
+  margin-right: 52px;
+}
+.button-02 .inner {
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
