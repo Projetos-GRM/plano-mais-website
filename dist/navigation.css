@@ -1,29 +1,83 @@
-/* Main navigation and dropdowns follow the supplied desktop and mobile menu reference. */
-.nav {
-  gap: 22px;
-}
-
-.links {
-  flex: 1;
-  justify-content: space-between;
-  gap: clamp(14px, 1.8vw, 26px);
-  white-space: nowrap;
-}
-
-.nav-cta {
-  flex: 0 0 265px;
-  min-height: 50px;
-  padding: 12px 24px;
-  font-size: 14px;
-}
-
-.nav-mobile-cta {
+/* Primary navigation sized to the Figma header (node 58254:723). */
+.button.nav-mobile-cta {
   display: none;
+}
+
+@media (min-width: 1101px) {
+  header .nav {
+    height: 104px;
+    gap: 0;
+  }
+
+  header .nav > a:first-child {
+    flex: 0 0 130px;
+  }
+
+  header .nav > a:first-child .logo {
+    width: 130px;
+    height: 54px;
+  }
+
+  header .nav .links {
+    flex: 0 0 auto;
+    gap: 28px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  header .nav > .nav-cta {
+    display: inline-flex;
+    flex: 0 0 257.477px;
+    width: 257.477px;
+    height: 48px;
+    min-height: 48px;
+    padding: 0 32px;
+    font-size: 14px;
+    line-height: 23.1px;
+  }
+
+  html {
+    scroll-padding-top: 104px;
+  }
+
+  .card-story-sticky {
+    top: 104px;
+    min-height: calc(100vh - 104px);
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1100px) {
+  header .nav {
+    gap: 14px;
+  }
+
+  header .nav > a:first-child,
+  header .nav > a:first-child .logo {
+    flex: 0 0 108px;
+    width: 108px;
+  }
+
+  header .nav .links {
+    flex: 1 1 auto;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  header .nav > .nav-cta {
+    display: inline-flex;
+    flex: 0 0 205px;
+    width: 205px;
+    height: 46px;
+    min-height: 46px;
+    padding: 0 18px;
+    font-size: 13px;
+  }
 }
 
 .site-nav-dropdown {
   position: relative;
-  flex: 0 0 auto;
   border: 0;
   padding: 0;
 }
@@ -32,8 +86,8 @@
   display: flex;
   min-height: 44px;
   align-items: center;
-  gap: 10px;
-  padding: 8px 0;
+  gap: 9px;
+  padding: 10px 0;
   cursor: pointer;
   list-style: none;
   white-space: nowrap;
@@ -46,17 +100,17 @@
 .site-nav-dropdown > summary::after {
   content: "";
   position: static;
-  width: 7px;
-  height: 7px;
-  margin: -4px 1px 0 0;
-  border-right: 1.5px solid var(--blue);
-  border-bottom: 1.5px solid var(--blue);
+  width: 6px;
+  height: 6px;
+  margin: -4px 0 0;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
   transform: rotate(45deg);
   transition: transform .18s ease, margin .18s ease;
 }
 
 .site-nav-dropdown[open] > summary::after {
-  margin-top: 4px;
+  margin-top: 3px;
   transform: rotate(225deg);
 }
 
@@ -82,7 +136,7 @@
   display: flex;
   align-items: center;
   min-height: 62px;
-  padding: 12px 12px;
+  padding: 12px;
   border-radius: 12px;
   box-shadow: none !important;
   font-size: 18px;
@@ -99,130 +153,102 @@
 
 .about-panel {
   display: grid;
-  gap: 4px;
+  top: calc(100% + 12px);
+  left: -22px;
+  width: 242px;
+  padding: 10px;
+  border-radius: 20px;
+  gap: 0;
+}
+
+.about-panel a {
+  min-height: 47.1px;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 23.1px;
 }
 
 .products-menu {
-  width: 360px;
-  padding: 22px;
+  top: calc(100% + 12px);
+  left: -22px;
+  width: 242px;
+  padding: 10px;
+  border-radius: 20px;
 }
 
 .products-menu .products-menu-heading {
-  min-height: 54px;
-  margin: 0 0 8px;
-  padding: 8px 12px 17px;
+  min-height: 47.9px;
+  margin: 0 0 5px;
+  padding: 12px;
   border-bottom: 1px solid #dfe4f2;
   border-radius: 0;
-  font-size: 19px;
+  font-size: 14px;
   font-weight: 600;
+  line-height: 23.1px;
 }
 
 .products-menu-list {
-  display: grid;
-  gap: 2px;
+  display: block;
 }
 
 .products-menu-list a {
-  gap: 14px;
-  min-height: 58px;
-  font-size: 18px;
+  gap: 12px;
+  min-height: 47.1px;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 23.1px;
 }
 
 .products-menu .product-dot {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
 }
 
-@media (max-width: 1150px) and (min-width: 981px) {
-  .nav {
-    gap: 14px;
-  }
-
-  .logo {
-    width: 104px;
-  }
-
-  .links {
-    gap: 12px;
-    font-size: 13px;
-  }
-
-  .site-nav-dropdown > summary {
-    font-size: 13px;
-  }
-
-  .nav-cta {
-    display: inline-flex;
-    flex-basis: 190px;
-    min-height: 48px;
-    padding-inline: 16px;
-    font-size: 13px;
-  }
-}
-
-@media (max-width: 980px) {
-  .nav {
+@media (max-width: 900px) {
+  header .nav {
     position: relative;
-    gap: 12px;
+    width: calc(100% - 32px);
+    height: 80px;
+    gap: 0;
   }
 
-  .nav-cta {
+  header .nav > a:first-child .logo {
+    width: 105px;
+    height: 43px;
+  }
+
+  header .nav > .nav-cta {
     display: none;
   }
 
-  .menu {
+  header .nav > .menu {
     display: block;
-    flex: 0 0 auto;
-    background: transparent;
+    background: none;
     border: 1px solid #213cb150;
     border-radius: 30px;
     padding: 8px 17px;
     color: var(--ink);
   }
 
-  .links {
-    position: absolute;
-    z-index: 25;
-    top: 100%;
-    left: 0;
-    right: 0;
+  header .nav .links {
     display: none;
-    max-height: calc(100dvh - 96px);
-    overflow-y: auto;
-    padding: 18px 22px 22px;
-    border: 1px solid #e5e8f3;
-    border-top: 0;
-    border-radius: 0 0 22px 22px;
+    position: absolute;
+    top: 80px;
+    left: -16px;
+    right: -16px;
+    z-index: 31;
     background: var(--paper);
-    box-shadow: 0 18px 30px rgba(23, 41, 104, .14);
-    white-space: normal;
+    padding: 20px 25px;
+    box-shadow: 0 15px 20px #17296815;
   }
 
-  .links.open {
+  header .nav .links.open {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
-    justify-content: flex-start;
-    gap: 6px;
-  }
-
-  .links > a:not(.button) {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    min-height: 46px;
-    padding: 10px 0;
-  }
-
-  .site-nav-dropdown {
-    width: 100%;
-  }
-
-  .site-nav-dropdown > summary {
-    justify-content: space-between;
-    width: 100%;
-    min-height: 46px;
-    font-size: 14px;
+    align-items: flex-start;
+    gap: 18px;
   }
 
   .site-nav-panel {
@@ -255,7 +281,7 @@
     width: fit-content;
     min-height: 48px;
     margin-top: 7px;
-    padding: 12px 28px;
+    padding: 12px 24px;
   }
 }
 

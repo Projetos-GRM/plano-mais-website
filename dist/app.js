@@ -61,7 +61,8 @@ function paintScroll() {
   cards.forEach(card => { card.style.removeProperty('transform'); card.style.removeProperty('opacity'); card.style.removeProperty('z-index'); });
   return;
  }
- const progress = clamp((104 - box.top) / Math.max(1, box.height - innerHeight + 104));
+ const headerHeight = document.querySelector('header')?.offsetHeight || 104;
+ const progress = clamp((headerHeight - box.top) / Math.max(1, box.height - innerHeight + headerHeight));
  const position = progress * (cards.length - 1);
  story.style.setProperty('--story-progress', progress);
  cards.forEach((card, index) => {

@@ -42,7 +42,41 @@ def product_navigation(route):
 def product_footer():
     return ''.join(f'<a href="/produtos/{p["slug"]}/">{p["name"]}</a>' for p in PRODUCTS)
 
+def home_product_overview():
+    cards = [
+        dict(slug='supramed', name='Supramed', icon='home-supramed-icon.svg', logo='supramed-logo.png',
+             color='#2abdb5', ink='#126660', background='#d0eef0', href='/produtos/supramed/',
+             copy='Consultas, exames e dentista com valores exclusivos.'),
+        dict(slug='telemedicina', name='Telemedicina', icon='home-telemedicina-icon.svg', logo=None,
+             color='#3669ff', ink='#3669ff', background='#e7edff', href='/beneficios/#telemedicina',
+             copy='Atendimento emergencial, de onde você estiver.'),
+        dict(slug='clubemais', name='Clubemais', icon='home-clubemais-icon.svg', logo='clubemais-logo.png',
+             color='#e8507a', ink='#b22950', background='#f6d8e4', href='/produtos/clubemais/',
+             copy='Aplicativo com descontos exclusivos pra você economizar.'),
+        dict(slug='memorialmais', name='Memorialmais', icon='home-memorialmais-icon.svg', logo='memorialmais-logo.png',
+             color='#7b4fbe', ink='#663da3', background='#e1d8f2', href='/produtos/memorialmais/',
+             copy='Cobertura e assistência funeral 24h'),
+        dict(slug='petmais', name='Petmais', icon='home-petmais-icon.svg', logo='petmais-logo.png',
+             color='#f5892a', ink='#934600', background='#f9e3d4', href='/produtos/petmais/',
+             copy='Cuidado para quem também faz parte da família.'),
+    ]
+    markup = ''
+    for card in cards:
+        logo = (f'<img class="product-logo" src="/assets/products/{card["logo"]}" width="140" height="40" '
+                f'alt="{card["name"]}" loading="lazy">' if card['logo'] else
+                '<span class="product-logo telemedicine-wordmark" role="img" aria-label="Telemedicina 24 horas"><strong>Telemedicina</strong><small>24 horas</small></span>')
+        markup += f'''<a class="product-card home-product-card" href="{card['href']}"
+          style="--product-color:{card['color']};--product-ink:{card['ink']};--home-card-bg:{card['background']}"
+          aria-label="Saiba mais sobre {card['name']}">
+          <span class="product-icon"><img src="/assets/products/{card['icon']}" width="26" height="26" alt=""></span>
+          {logo}<p>{card['copy']}</p><span class="product-card-link">Saiba mais <span aria-hidden="true">↗</span></span></a>'''
+    return f'''<section class="section product-overview product-overview-home" id="produtos" aria-labelledby="produtos-title"><div class="wrap">
+      <div class="heading product-section-heading"><div><div class="eyebrow">PRESENTE NO SEU DIA A DIA</div><h2 id="produtos-title">Assistência pra você e sua família.<br>Tranquilidade pra sua vida.</h2></div><p class="muted">Tudo pra você ter mais condições de cuidar do que realmente importa.</p></div>
+      <div class="product-grid">{markup}</div></div></section>'''
+
 def product_overview(exclude=None):
+    if not exclude:
+        return home_product_overview()
     main = dict(slug='mais', name='Mais Assistencial', color='#1a3ea8', tint='#eef3ff', ink='#1a3ea8', short='Assistência para você e sua família.')
     products = ([main] if not exclude else []) + [p for p in PRODUCTS if p['slug'] != exclude]
     cards = ''
