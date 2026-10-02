@@ -51,6 +51,8 @@ function paintScroll() {
  if (reducedMotion.matches) {
   cards.forEach(card => card.style.removeProperty('transform'));
   cards.forEach(card => { card.style.removeProperty('opacity'); card.style.removeProperty('z-index'); });
+  story?.style.removeProperty('--platinum-glow');
+  story?.style.removeProperty('--platinum-glow-scale');
   return;
  }
  if (!story) return;
@@ -59,12 +61,17 @@ function paintScroll() {
  const mobile = compactScreen.matches;
  if (mobile) {
   cards.forEach(card => { card.style.removeProperty('transform'); card.style.removeProperty('opacity'); card.style.removeProperty('z-index'); });
+  story.style.removeProperty('--platinum-glow');
+  story.style.removeProperty('--platinum-glow-scale');
   return;
  }
  const headerHeight = document.querySelector('header')?.offsetHeight || 104;
  const progress = clamp((headerHeight - box.top) / Math.max(1, box.height - innerHeight + headerHeight));
  const position = progress * (cards.length - 1);
  story.style.setProperty('--story-progress', progress);
+ const platinumGlow = clamp((position - 1.5) / .22);
+ story.style.setProperty('--platinum-glow', platinumGlow);
+ story.style.setProperty('--platinum-glow-scale', `${platinumGlow * .35}`);
  cards.forEach((card, index) => {
   const distance = index - position;
   const offset = Math.max(-1.5, Math.min(1.5, distance));
