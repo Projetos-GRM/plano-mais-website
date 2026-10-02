@@ -97,6 +97,12 @@
   display: none;
 }
 
+/* Remove o marcador nativo duplicado; o chevron abaixo é o único indicador. */
+.site-nav-dropdown > summary::marker {
+  content: "";
+  font-size: 0;
+}
+
 .site-nav-dropdown > summary::after {
   content: "";
   position: static;
@@ -110,6 +116,11 @@
 }
 
 .site-nav-dropdown[open] > summary::after {
+  content: "";
+  position: static;
+  top: auto;
+  right: auto;
+  font-size: inherit;
   margin-top: 3px;
   transform: rotate(225deg);
 }
