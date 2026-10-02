@@ -111,7 +111,7 @@ if (!reducedMotion.matches && 'IntersectionObserver' in window) {
 }
 
 // Drop the company cards once when their panel becomes visible.
-const companyStack = document.querySelector('.company-vibrant aside');
+const companyStack = document.querySelector('.company-campaign .company-list');
 if (companyStack && !reducedMotion.matches && 'IntersectionObserver' in window) {
  companyStack.classList.add('company-stack-armed');
  const stackObserver = new IntersectionObserver((entries, observer) => {
