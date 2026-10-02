@@ -1,33 +1,42 @@
 const menu = document.querySelector('.menu');
 const navigation = document.querySelector('#navigation');
-const productMenu = document.querySelector('.products-nav');
+const navDropdowns = [...document.querySelectorAll('.site-nav-dropdown')];
+navDropdowns.forEach(dropdown => dropdown.addEventListener('toggle', () => {
+ if (dropdown.open) navDropdowns.forEach(sibling => {
+  if (sibling !== dropdown) sibling.open = false;
+ });
+}));
 menu?.addEventListener('click', () => {
  const open = menu.getAttribute('aria-expanded') !== 'true';
  menu.setAttribute('aria-expanded', String(open));
  navigation.classList.toggle('open', open);
  menu.textContent = open ? 'Fechar' : 'Menu';
- if (!open && productMenu) productMenu.open = false;
+ if (!open) navDropdowns.forEach(dropdown => { dropdown.open = false; });
 });
 document.addEventListener('keydown', event => {
- if (event.key === 'Escape' && productMenu?.open) {
-  productMenu.open = false;
-  productMenu.querySelector('summary').focus();
+ const openDropdown = navDropdowns.find(dropdown => dropdown.open);
+ if (event.key === 'Escape' && openDropdown) {
+  openDropdown.open = false;
+  openDropdown.querySelector('summary').focus();
   return;
  }
- if(event.key === 'Escape' && menu?.getAttribute('aria-expanded') === 'true') {
- menu.click(); menu.focus();
+ if (event.key === 'Escape' && menu?.getAttribute('aria-expanded') === 'true') {
+  menu.click(); menu.focus();
  }
 });
 document.addEventListener('click', event => {
- if (productMenu?.open && !productMenu.contains(event.target)) productMenu.open = false;
+ navDropdowns.forEach(dropdown => {
+  if (dropdown.open && !dropdown.contains(event.target)) dropdown.open = false;
+ });
 });
-productMenu?.addEventListener('focusout', event => {
- if (event.relatedTarget && !productMenu.contains(event.relatedTarget)) productMenu.open = false;
-});
-productMenu?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
- productMenu.open = false;
- if (menu?.getAttribute('aria-expanded') === 'true') menu.click();
+navDropdowns.forEach(dropdown => dropdown.addEventListener('focusout', event => {
+ if (event.relatedTarget && !dropdown.contains(event.relatedTarget)) dropdown.open = false;
 }));
+navigation?.addEventListener('click', event => {
+ if (!event.target.closest('a')) return;
+ navDropdowns.forEach(dropdown => { dropdown.open = false; });
+ if (menu?.getAttribute('aria-expanded') === 'true') menu.click();
+});
 
 // Progressive enhancement: all content stays readable without JavaScript.
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');

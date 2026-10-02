@@ -36,7 +36,8 @@ def product_navigation(route):
     links = ''.join(f'<a href="/produtos/{p["slug"]}/" style="{theme(p)}" '+
                     ('aria-current="page" ' if route == 'produtos/'+p['slug'] else '')+
                     f'><span class="product-dot" aria-hidden="true"></span>{p["name"]}</a>' for p in PRODUCTS)
-    return '<details class="products-nav"><summary>Produtos</summary><div class="products-menu"><a class="products-menu-all" href="/#produtos">Todos os produtos <span aria-hidden="true">↗</span></a>'+links+'</div></details>'
+    benefits_active = ' aria-current="page"' if route == 'beneficios' else ''
+    return '<details class="site-nav-dropdown products-nav"><summary>Pra você usar</summary><div class="site-nav-panel products-menu"><a class="products-menu-heading" href="/beneficios/"'+benefits_active+'>Benefícios</a><div class="products-menu-list">'+links+'</div></div></details>'
 
 def product_footer():
     return ''.join(f'<a href="/produtos/{p["slug"]}/">{p["name"]}</a>' for p in PRODUCTS)
