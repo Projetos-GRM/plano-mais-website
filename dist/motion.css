@@ -21,7 +21,9 @@
 
 /* Scroll presents one card at a time with depth and perspective. */
 .card-story{height:260vh;min-height:1500px}
-.card-story{background:#ebddfe;border-radius:40px 40px 0 0}
+.card-story{background:#ebddfe;border-radius:40px 40px 0 0;overflow:clip}
+/* Recorta somente a borda inferior, preservando o fundo e a área de scroll. */
+.card-story::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:clamp(40px,6.25vw,120px);z-index:2;pointer-events:none;background:#fff;-webkit-mask-image:linear-gradient(#000 0 0),url('/assets/card-story-bottom-curve.svg');mask-image:linear-gradient(#000 0 0),url('/assets/card-story-bottom-curve.svg');-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-composite:xor;mask-composite:exclude}
 .card-story-sticky{isolation:isolate}
 .card-story-sticky::before{content:'';position:absolute;inset:0;z-index:0;background:url('/assets/card-life-background.png') center/cover no-repeat;opacity:.44;pointer-events:none}
 .card-story-grid{position:relative;z-index:1;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;padding:60px 0}
