@@ -7,13 +7,13 @@
 }
 /* Reserve the pixel layer below the complete plans content. */
 .plans-section[data-st-03] {
-  padding-top: 127px;
-  padding-bottom: calc(64vh - 5px);
+  padding-top: 159px;
+  padding-bottom: calc(64vh - 45px);
 }
 @media (max-width: 760px) {
   .plans-section[data-st-03] {
-    padding-top: 90px;
-    padding-bottom: calc(64vh - 42px);
+    padding-top: 122px;
+    padding-bottom: calc(64vh - 82px);
   }
 }
 [data-st-03] > [data-st-03-pixels] {
