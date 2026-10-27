@@ -3,6 +3,13 @@
   display: none;
 }
 
+/* Main navigation CTA follows the Mais blue-to-pink gradient. */
+.button.nav-cta,
+.button.nav-mobile-cta {
+  --button-02-bg: linear-gradient(105deg, #213CB1 0%, #EB268F 100%);
+  --button-02-fg: #fff;
+}
+
 @media (min-width: 1101px) {
   header .nav {
     height: 104px;

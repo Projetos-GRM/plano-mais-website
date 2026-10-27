@@ -11,9 +11,13 @@
 /* Full-bleed photography keeps the people on the right and clear copy on the left. */
 .human-hero{background:#1d2d43;isolation:isolate}
 .hero-backdrop{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:-1}
-.human-hero .hero-grid{display:flex;align-items:center;min-height:610px;padding:58px 56px}
+.human-hero::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(90deg,rgba(29,45,67,.72) 0%,rgba(29,45,67,.46) 32%,rgba(29,45,67,.08) 55%,transparent 72%)}
+.human-hero .hero-grid{position:relative;z-index:1;display:flex;align-items:center;min-height:610px;padding:58px 56px}
 .hero-copy{width:min(410px,42%)}
 .human-hero h1{font-size:clamp(2.7rem,3.7vw,3.7rem)}
+.human-hero h1,.human-hero h1 em{color:#fff}
+.human-hero .hero-copy>p{display:inline;background:#518EE9;padding:2px 8px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.human-hero .hero-copy>p+.button{display:flex;width:fit-content;margin-top:30px}
 
 /* Scroll presents one card at a time with depth and perspective. */
 .card-story{height:260vh;min-height:1500px}
