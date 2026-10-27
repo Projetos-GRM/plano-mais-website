@@ -16,7 +16,8 @@
 .hero-copy{width:min(410px,42%)}
 .human-hero h1{font-size:clamp(2.7rem,3.7vw,3.7rem)}
 .human-hero h1,.human-hero h1 em{color:#fff}
-.human-hero .hero-copy>p{display:inline;background:#518EE9;padding:2px 8px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.human-hero .hero-copy>p{display:inline;background:#518EE9;padding:2px 8px;line-height:31px;border-radius:8px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+@media(max-width:760px){.human-hero .hero-copy>p{line-height:30px}}
 .human-hero .hero-copy>p+.button{display:flex;width:fit-content;margin-top:30px}
 
 /* Scroll presents one card at a time with depth and perspective. */
