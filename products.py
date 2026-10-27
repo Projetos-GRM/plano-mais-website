@@ -44,31 +44,34 @@ def product_footer():
 
 def home_product_overview():
     cards = [
-        dict(slug='supramed', name='Supramed', icon='home-supramed-icon.svg', logo='supramed-logo.png',
-             color='#2abdb5', ink='#126660', background='#d0eef0', href='/produtos/supramed/',
+        dict(slug='supramed', name='Supramed', logo='home-supramed-figma.svg',
+             gradient='linear-gradient(180deg,#00cc66 0%,#008040 100%)', href='/produtos/supramed/',
+             logo_width='162px', logo_height='40px',
              copy='Consultas, exames e dentista com valores exclusivos.'),
-        dict(slug='telemedicina', name='Telemedicina', icon='home-telemedicina-icon.svg', logo=None,
-             color='#3669ff', ink='#3669ff', background='#e7edff', href='/beneficios/#telemedicina',
+        dict(slug='telemedicina', name='Telemedicina', logo='home-telemedicina-figma.svg',
+             gradient='linear-gradient(0deg,#0074bd 0%,#0aa1ff 100%)', href='/beneficios/#telemedicina',
+             logo_width='162px', logo_height='40px',
              copy='Atendimento emergencial, de onde você estiver.'),
-        dict(slug='clubemais', name='Clubemais', icon='home-clubemais-icon.svg', logo='clubemais-logo.png',
-             color='#e8507a', ink='#b22950', background='#f6d8e4', href='/produtos/clubemais/',
+        dict(slug='clubemais', name='Clubemais', logo='home-clubemais-figma.svg',
+             gradient='linear-gradient(180deg,#f53d95 0%,#f20d7b 100%)', href='/produtos/clubemais/',
+             logo_width='171px', logo_height='40px',
              copy='Aplicativo com descontos exclusivos pra você economizar.'),
-        dict(slug='memorialmais', name='Memorialmais', icon='home-memorialmais-icon.svg', logo='memorialmais-logo.png',
-             color='#7b4fbe', ink='#663da3', background='#e1d8f2', href='/produtos/memorialmais/',
-             copy='Cobertura e assistência funeral 24h'),
-        dict(slug='petmais', name='Petmais', icon='home-petmais-icon.svg', logo='petmais-logo.png',
-             color='#f5892a', ink='#934600', background='#f9e3d4', href='/produtos/petmais/',
-             copy='Cuidado para quem também faz parte da família.'),
+        dict(slug='memorialmais', name='Memorialmais', logo='home-memorialmais-figma.svg',
+             gradient='linear-gradient(180deg,#a970ff 0%,#7a24ff 100%)', href='/produtos/memorialmais/',
+             logo_width='157px', logo_height='52px',
+             copy='Cobertura e assistência funeral completa 24h por dia'),
+        dict(slug='petmais', name='Petmais', logo='home-petmais-figma.svg',
+             gradient='linear-gradient(180deg,#ff941a 0%,#cc6d00 100%)', href='/produtos/petmais/',
+             logo_width='143px', logo_height='40px',
+             copy='Cuidado pra quem também faz parte da família.'),
     ]
     markup = ''
     for card in cards:
-        logo = (f'<img class="product-logo" src="/assets/products/{card["logo"]}" width="140" height="40" '
-                f'alt="{card["name"]}" loading="lazy">' if card['logo'] else
-                '<span class="product-logo telemedicine-wordmark" role="img" aria-label="Telemedicina 24 horas"><strong>Telemedicina</strong><small>24 horas</small></span>')
+        logo = (f'<span class="home-product-logo" style="--home-logo-width:{card["logo_width"]};--home-logo-height:{card["logo_height"]}">'
+                f'<img src="/assets/products/{card["logo"]}" alt="" loading="lazy"></span>')
         markup += f'''<a class="product-card home-product-card" href="{card['href']}"
-          style="--product-color:{card['color']};--product-ink:{card['ink']};--home-card-bg:{card['background']}"
+          style="--home-card-bg:{card['gradient']}"
           aria-label="Saiba mais sobre {card['name']}">
-          <span class="product-icon"><img src="/assets/products/{card['icon']}" width="26" height="26" alt=""></span>
           {logo}<p>{card['copy']}</p><span class="product-card-link">Saiba mais <span aria-hidden="true">↗</span></span></a>'''
     return f'''<section class="section product-overview product-overview-home" id="produtos" aria-labelledby="produtos-title"><div class="wrap">
       <div class="heading product-section-heading"><div><div class="eyebrow">PRESENTE NO SEU DIA A DIA</div><h2 id="produtos-title">Assistência pra você e sua família.<br>Tranquilidade pra sua vida.</h2></div><p class="muted">Tudo pra você ter mais condições de cuidar do que realmente importa.</p></div>

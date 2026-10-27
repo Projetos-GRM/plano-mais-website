@@ -76,10 +76,17 @@
 @media(max-width:370px){.product-grid,.product-grid-related{grid-template-columns:1fr}.product-card:last-child:nth-child(odd){grid-column:auto}.product-hero h1{font-size:32px}}
 @media(prefers-reduced-motion:reduce){.product-card{transition:none}.product-card:hover{transform:none}}
 
-/* Homepage cards and copy match Figma section 58254:916. */
+/* Homepage product section follows Figma node 58483:562. */
+.product-overview-home{padding:64px 0 120px!important;border-radius:40px 40px 0 0}
+.product-overview-home>.wrap{padding:40px 0}
 .product-overview-home .product-section-heading>div{max-width:760px}
-.product-overview-home .home-product-card{height:324.25px;background:var(--home-card-bg)}
-.product-overview-home .telemedicine-wordmark{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;width:158px;height:39px;color:#626b87;line-height:1}
-.product-overview-home .telemedicine-wordmark strong{font-size:16px;font-weight:600;font-style:italic;line-height:1.15}
-.product-overview-home .telemedicine-wordmark small{margin-left:68px;font-size:8px;font-weight:500;font-style:italic;line-height:1.1}
-@media(max-width:1150px){.product-overview-home .home-product-card{height:auto;min-height:324.25px}}
+.product-overview-home .product-section-heading .eyebrow,.product-overview-home .product-section-heading h2{color:#223aaf}
+.product-overview-home .product-section-heading h2{font-size:44px;line-height:52.8px;letter-spacing:-1.5px}
+.product-overview-home .home-product-card{height:273px;padding:32px 24px 36px;border-radius:26px;background:var(--home-card-bg);color:#fff;transition:transform .25s}
+.product-overview-home .home-product-card:hover{transform:translateY(-5px)}
+.product-overview-home .home-product-logo{position:relative;display:block;width:var(--home-logo-width);height:var(--home-logo-height);margin:16px 0;overflow:visible}
+.product-overview-home .home-product-logo img{position:absolute;top:50%;left:50%;display:block;width:auto;height:auto;max-width:none;transform:translate(-50%,-50%)}
+.product-overview-home .home-product-card p{flex:0;margin:0;padding-bottom:24px;color:#fff;font-size:15px;font-weight:500;line-height:24.75px}
+.product-overview-home .home-product-card .product-card-link{margin-top:auto;min-height:34px;gap:10px;padding-bottom:3px;color:#fff;border-bottom-color:#ffffff80;font-size:14px;font-weight:600;line-height:23.1px}
+@media(max-width:1150px){.product-overview-home .home-product-card{height:auto;min-height:273px}}
+@media(max-width:760px){.product-overview-home{padding:48px 0 72px!important}.product-overview-home>.wrap{padding:0}.product-overview-home .product-section-heading h2{font-size:30px;line-height:1.2}.product-overview-home .home-product-card{padding:28px 20px 24px}}

@@ -21,6 +21,20 @@
 
 /* Scroll presents one card at a time with depth and perspective. */
 .card-story{height:260vh;min-height:1500px}
+.card-story{background:#ebddfe;border-radius:40px 40px 0 0}
+.card-story-sticky{isolation:isolate}
+.card-story-sticky::before{content:'';position:absolute;inset:0;z-index:0;background:url('/assets/card-life-background.png') center/cover no-repeat;opacity:.44;pointer-events:none}
+.card-story-grid{position:relative;z-index:1;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;padding:60px 0}
+.card-story-copy{min-height:473.219px;align-self:center;max-width:none;color:#172968}
+.card-story-copy .eyebrow{margin:0;color:#172968}
+.card-story h2{margin:22px 0 0;color:#172968;font-size:48px;line-height:57.6px;letter-spacing:-1.5px}
+.card-story h2 em{color:#e51584}
+.card-story-copy>p{width:390px;max-width:100%;margin:20px 0;color:#172968;font-size:16px;line-height:26.4px}
+.button.plan-life-cta{width:255.555px;height:48px;--button-02-bg:linear-gradient(90deg,#223bb1 0%,#eb268f 100%);--button-02-fg:#fff}
+.button.plan-life-cta .inner,.button.plan-life-cta .circle{background:linear-gradient(90deg,#223bb1 0%,#eb268f 100%)}
+.story-progress{width:245px;height:4px;margin-top:40px;background:#cacaf3}
+.story-progress span{background:#213cb1}
+.scroll-hint{display:none}
 .card-stage{transform-style:preserve-3d;perspective:1150px;overflow:visible}
 .motion-card{transform-style:preserve-3d;backface-visibility:hidden;transform:translate(-50%,-50%);transition:filter .25s;}
 .motion-card img{backface-visibility:hidden;box-shadow:18px 30px 45px #19236038}
