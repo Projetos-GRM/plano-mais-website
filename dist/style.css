@@ -8,3 +8,40 @@
 
 /* Versão compacta: o mesmo conteúdo ocupa duas linhas no desktop. */
 @media(min-width:761px){.site-footer{padding:48px 0 38px}.footer-layout{grid-template-columns:210px 230px 195px minmax(185px,1fr) 105px;grid-template-areas:"brand contact transparency security tagline" "legal legal legal . tagline";column-gap:34px;row-gap:46px}.footer-nav h2{font-size:21px;margin-bottom:15px}.footer-nav a{font-size:13px;margin-bottom:8px}.footer-phone{font-size:19px!important}.footer-tagline{font-size:29px}.footer-legal{padding-top:0}.footer-legal .logo{width:185px;margin-bottom:14px}.footer-legal p{font-size:12px;line-height:1.42}}
+
+/* Curvatura superior da seção de planos, conforme o frame de referência. */
+.plans-section{position:relative;isolation:isolate;overflow:hidden;background:#fff}
+.plans-section::before{content:'';position:absolute;z-index:-1;inset:0;background:url('/assets/plans-section-curve.svg') center top/100% 100% no-repeat;pointer-events:none}
+.plans-section .plan-visual{position:relative;width:100%;flex-shrink:0}
+/* Rodapé institucional conforme o Figma. */
+.figma-footer{padding:120px 0 0;background:#fff;color:#e0e6ff}
+.figma-footer-curve{height:80px;margin-bottom:-1px;background:url('/assets/footer-curve.svg') center/100% 100% no-repeat;transform:scaleY(-1)}
+.figma-footer-body{background:#213cb1;padding:55px 0 25px}
+.figma-footer-grid{display:grid;grid-template-columns:226px 186px 206px 206px 166px;gap:40px;min-height:302px}
+.figma-footer-grid h2{font-size:16px;font-weight:700;line-height:24px;letter-spacing:-.4px;margin:0 0 16px;color:#fff;white-space:nowrap}
+.figma-footer-grid p,.figma-footer-grid address,.figma-footer-grid a{font-size:14px;line-height:21px;color:#e0e6ff}
+.figma-footer-grid nav>a{display:block;margin-bottom:12px;min-height:24px}
+@media(min-width:1251px){.figma-footer-grid nav>a{white-space:nowrap}.footer-contact-row address{width:205px}}
+.figma-footer-grid a:hover{text-decoration:underline;text-underline-offset:4px}
+.figma-footer-brand>a{display:flex;align-items:center;width:130px;height:54px}
+.figma-footer-brand p{margin:30px 0 0;line-height:23.1px;white-space:nowrap}
+.figma-footer-brand strong{font-weight:600}
+.figma-footer-socials{display:flex;gap:16px;margin-top:45px}
+.footer-social-icon{position:relative;display:block;width:20px;height:20px}
+.footer-social-icon img{position:absolute}
+.instagram-outline{top:.8333px;left:.8333px}.instagram-lens{top:5.8333px;left:5.8333px}.instagram-dot{top:4.5833px;left:13.75px}.facebook-icon{top:.8333px;left:5px}
+.footer-contact-row{display:grid;grid-template-columns:16px minmax(0,1fr);gap:12px;margin-bottom:16px}
+.footer-contact-row p{margin:0;white-space:nowrap}
+.footer-contact-row address{font-style:normal}
+.footer-contact-row address strong{font-weight:500;color:#fff}
+.footer-contact-icon{position:relative;width:16px;height:16px;margin-top:2px}
+.footer-contact-icon img{position:absolute;top:.6667px;left:.6667px}
+.footer-contact-icon .pin-outline{left:2px}.footer-contact-icon .pin-center{left:5.3333px;top:4px}
+.figma-footer-bottom{display:flex;justify-content:space-between;gap:24px;margin-top:35px;border-top:1px solid #ffffff24;padding-top:22px;color:#c3ceee;font-size:12px;line-height:19.8px}
+@media(max-width:1250px){.figma-footer-grid{grid-template-columns:1.2fr 1fr 1fr;gap:36px;min-height:0}.figma-footer-grid h2{white-space:normal}.figma-footer-brand p{white-space:normal}.figma-footer-bottom{margin-top:55px}}
+@media(max-width:760px){.figma-footer{padding-top:60px}.figma-footer-curve{height:45px}.figma-footer-body{padding-top:35px}.figma-footer-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 24px}.figma-footer-brand{grid-column:1/-1}.figma-footer-brand p{margin-top:20px}.figma-footer-socials{margin-top:24px}.figma-footer-contact{grid-column:1/-1}.figma-footer-bottom{flex-direction:column;gap:12px;margin-top:40px}.figma-footer-grid nav>a{overflow-wrap:anywhere}}
+.plans-section .plan,.plans-section .plan.featured{border:1px solid #dfe4f5;box-shadow:none;transition:border-color .2s ease,box-shadow .2s ease}
+.plans-section .plan:hover{border-color:var(--blue);box-shadow:inset 0 0 0 1px var(--blue)}
+.section.wrap.campaign-section,.section.wrap.faq-grid{width:100%;background:#ffffff;padding-inline:max(32px,calc((100% - 1240px)/2))}
+@media(max-width:760px){.section.wrap.campaign-section,.section.wrap.faq-grid{padding-inline:16px}}
+.plans-section .plan-visual img,.plans-section .plan:hover .plan-visual img{position:absolute;inset:0;display:block;width:100%;height:100%;max-width:none;object-fit:cover;object-position:center;transform:none;transition:none;border-radius:inherit;box-shadow:none}

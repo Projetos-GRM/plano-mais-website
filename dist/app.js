@@ -128,3 +128,48 @@ if (companyStack && !reducedMotion.matches && 'IntersectionObserver' in window) 
   }
  });
 }
+
+// Campanhas: os controles de paginação trocam os banners enviados para a seção.
+document.querySelectorAll('[data-campaign-carousel]').forEach(carousel => {
+ const slides = [...carousel.querySelectorAll('[data-carousel-slide]')];
+ const controls = [...carousel.querySelectorAll('[data-carousel-to]')];
+ if (slides.length < 2 || controls.length !== slides.length) return;
+ let active = 0;
+ let timer;
+ const show = index => {
+  active = (index + slides.length) % slides.length;
+  slides.forEach((slide, slideIndex) => {
+   const selected = slideIndex === active;
+   slide.classList.toggle('is-active', selected);
+   slide.setAttribute('aria-hidden', String(!selected));
+  });
+  controls.forEach((control, controlIndex) => {
+   const selected = controlIndex === active;
+   control.classList.toggle('is-active', selected);
+   control.setAttribute('aria-selected', String(selected));
+  });
+ };
+ const stop = () => { if (timer) window.clearInterval(timer); };
+ const start = () => {
+  stop();
+  if (!reducedMotion.matches) timer = window.setInterval(() => show(active + 1), 6500);
+ };
+ controls.forEach((control, index) => {
+  control.addEventListener('click', () => { show(index); start(); });
+  control.addEventListener('keydown', event => {
+   if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+   event.preventDefault();
+   const next = event.key === 'ArrowRight' ? (index + 1) % controls.length : (index - 1 + controls.length) % controls.length;
+   controls[next].focus();
+   show(next);
+   start();
+  });
+ });
+ carousel.addEventListener('mouseenter', stop);
+ carousel.addEventListener('mouseleave', start);
+ carousel.addEventListener('focusin', stop);
+ carousel.addEventListener('focusout', event => { if (!carousel.contains(event.relatedTarget)) start(); });
+ reducedMotion.addEventListener('change', start);
+ show(0);
+ start();
+});
