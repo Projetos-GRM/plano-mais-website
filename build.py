@@ -26,13 +26,14 @@ def page(route,title,body):
 <nav aria-label="Transparência"><h2>Transparência</h2><a href="/beneficios/">Como utilizar</a><a href="/duvidas/">Perguntas frequentes</a><a href="/duvidas/">Central de Ajuda</a></nav>
 </div><div class="figma-footer-bottom"><span>© 2026 Mais Assistencial. Todos os direitos reservados.</span><span>CNPJ: 12.188.635/0001-04</span></div></div></div></footer>'''
  html=html.replace(old_footer,footer)
+ html=html.replace('</body>', '<a class="whatsapp-floating" href="https://api.whatsapp.com/send/?phone=552230580610&amp;text&amp;type=phone_number&amp;app_absent=0" target="_blank" rel="noopener noreferrer" aria-label="Fale conosco pelo WhatsApp (abre em nova aba)"><img src="/assets/whatsapp-floating.png?v=2" width="56" height="56" alt=""></a></body>')
  html=html.replace(f'<strong>Explore a Mais</strong>{links}', f'<strong>Explore a Mais</strong>{links}{product_footer()}')
  html=html.replace('<link rel="stylesheet" href="/style.css">','<link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/motion.css?v=9"><link rel="stylesheet" href="/products.css?v=2"><link rel="stylesheet" href="/button-02.css"><link rel="stylesheet" href="/navigation.css?v=2">')
  if route == '':
   html=html.replace('id="planos"', 'id="planos" data-st-03="20"')
   html=html.replace('</head>', '<link rel="stylesheet" href="/section-transition-03.css?v=4"></head>')
   html=html.replace('<script src="/app.js?v=4" defer></script>', '<script src="/vendor/gsap/gsap.min.js" defer></script><script src="/vendor/gsap/ScrollTrigger.min.js" defer></script><script src="/section-transition-03.js?v=4" defer></script><script src="/app.js?v=4" defer></script>')
- html=html.replace('/style.css"', '/style.css?v=10"').replace('/motion.css?v=9', '/motion.css?v=10')
+ html=html.replace('/style.css"', '/style.css?v=11"').replace('/motion.css?v=9', '/motion.css?v=10')
  html='\n'.join(line.rstrip() for line in html.splitlines())
  dest=out/route if route else out;dest.mkdir(parents=True,exist_ok=True);(dest/'index.html').write_text(html, encoding='utf-8', newline='\r\n')
 hero='''<div class="wrap hero"><div class="hero-grid"><div><div class="eyebrow">MAIS ASSISTENCIAL • PLANO PRA VIDA TODA</div><h1>A vida tem planos.<br>A gente tem<br><em>mais cuidado.</em></h1><p>Do cuidado com a saúde à proteção da família. Conte com benefícios que fazem a diferença todos os dias.</p>'''+btn('Encontre o seu plano','/#planos','light')+'''<p class="hero-note">Para você, sua família e cada fase da vida.</p></div><div class="hero-art" aria-label="Cartões dos planos Mais Assistencial"><div class="halo" aria-hidden="true"></div><img class="back" src="/assets/prime-3d.png" alt="Cartão Assistencial Prime"><img class="front" src="/assets/plus-3d.png" alt="Cartão Assistencial Plus"><div class="sticker">Mais tranquilidade ✦</div><div class="sticker bottom">Cabe na vida. Cuida de você.</div></div></div></div><div class="wrap ribbon"><span>Saúde e bem-estar</span><span>Benefícios no dia a dia</span><span>Cuidado com a família</span><span>Assistência de verdade</span></div>'''
