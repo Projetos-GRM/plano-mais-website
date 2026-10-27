@@ -1,4 +1,4 @@
-/* GSAP pixel transition between the home company and plans sections. */
+/* GSAP pixel transitions on explicitly marked home sections. */
 (() => {
  const defaults = {
   resolution: 20,
@@ -33,6 +33,7 @@
  let active = [];
  function destroy() {
   active.forEach(({timeline, layer}) => {
+   timeline.scrollTrigger?.kill();
    timeline.kill();
    layer.remove();
   });

@@ -29,8 +29,9 @@ def page(route,title,body):
  html=html.replace(f'<strong>Explore a Mais</strong>{links}', f'<strong>Explore a Mais</strong>{links}{product_footer()}')
  html=html.replace('<link rel="stylesheet" href="/style.css">','<link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/motion.css?v=9"><link rel="stylesheet" href="/products.css?v=2"><link rel="stylesheet" href="/button-02.css"><link rel="stylesheet" href="/navigation.css?v=2">')
  if route == '':
-  html=html.replace('</head>', '<link rel="stylesheet" href="/section-transition-03.css?v=2"></head>')
-  html=html.replace('<script src="/app.js?v=4" defer></script>', '<script src="/vendor/gsap/gsap.min.js" defer></script><script src="/vendor/gsap/ScrollTrigger.min.js" defer></script><script src="/section-transition-03.js?v=3" defer></script><script src="/app.js?v=4" defer></script>')
+  html=html.replace('id="planos"', 'id="planos" data-st-03="20"')
+  html=html.replace('</head>', '<link rel="stylesheet" href="/section-transition-03.css?v=4"></head>')
+  html=html.replace('<script src="/app.js?v=4" defer></script>', '<script src="/vendor/gsap/gsap.min.js" defer></script><script src="/vendor/gsap/ScrollTrigger.min.js" defer></script><script src="/section-transition-03.js?v=4" defer></script><script src="/app.js?v=4" defer></script>')
  html=html.replace('/style.css"', '/style.css?v=10"').replace('/motion.css?v=9', '/motion.css?v=10')
  html='\n'.join(line.rstrip() for line in html.splitlines())
  dest=out/route if route else out;dest.mkdir(parents=True,exist_ok=True);(dest/'index.html').write_text(html, encoding='utf-8', newline='\r\n')

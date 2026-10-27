@@ -1,11 +1,22 @@
-/* Scoped to the company-to-plans handoff on the home page. */
-.company-transition[data-st-03] {
+/* Only explicitly marked sections receive the pixel transition. */
+[data-st-03] {
   position: relative;
   min-height: 100vh;
   isolation: isolate;
   overflow: clip;
 }
-.company-transition [data-st-03-pixels] {
+/* Reserve the pixel layer below the complete plans content. */
+.plans-section[data-st-03] {
+  padding-top: 127px;
+  padding-bottom: calc(64vh - 5px);
+}
+@media (max-width: 760px) {
+  .plans-section[data-st-03] {
+    padding-top: 90px;
+    padding-bottom: calc(64vh - 42px);
+  }
+}
+[data-st-03] > [data-st-03-pixels] {
   position: absolute;
   inset: auto 0 0;
   height: 64vh;
@@ -20,5 +31,9 @@
   backface-visibility: hidden;
 }
 @media (prefers-reduced-motion: reduce) {
-  .company-transition [data-st-03-pixels] { display: none; }
+  [data-st-03-pixels] { display: none; }
+  .plans-section[data-st-03] { padding-bottom: 95px; }
+}
+@media (prefers-reduced-motion: reduce) and (max-width: 760px) {
+  .plans-section[data-st-03] { padding-bottom: 58px; }
 }
